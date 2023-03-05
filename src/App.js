@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import BarChart from './Componants/BarChart';
+import {Fare,Age} from './Data'
 
 function App() {
+  let keys1 = Object.keys(Fare);
+  let keys2 = Object.keys(Age);
+
+  const [userData] = useState({
+    labels: keys1,
+    datasets:[{
+      label: "Fare",
+      data: Object.values(Fare),
+    },
+    {
+      label: "Age",
+      data: Object.values(Age),
+    },
+  ]
+  },
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <BarChart chartdata={userData}/>
     </div>
   );
 }
